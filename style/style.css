@@ -1,0 +1,83 @@
+/* This contains style for the overall page */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    border: 1px solid red;
+    padding:20px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: purple;
+    border-radius: 1%;
+    margin: 5px;
+}
+
+/* Card Container css */
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50%;
+    column-gap: 0.5%;
+    border: 1px solid red;
+    margin: 5px;
+    padding: 5px;
+    max-width: 80%;
+    height: 100%;
+}
+
+.card {
+    border: 1px solid green;
+    margin: 2px;
+    padding: 2px;
+    max-width: 300px;
+    /* height: 200px; */
+    /* align-items: center; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card__title {
+    margin: 1px;
+    border: 1px solid green;
+    font-size: 1.5rem;
+}
+.card__description{
+    max-width: 295px;
+    border: 1px solid green;
+    font-size: 1rem;
+    height: 80px;
+}
+.card__price {
+    border: 1px solid green;
+    font-size: 1.3rem;
+}
+
+.card__buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid green;
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+#incrementButton{
+    width: 80px;
+    font-size: 1.5rem;
+}
+
+#decrementButton{
+    width: 80px;
+    font-size: 1.5rem;
+}
+
+.card__image {
+    height: 200px;
+    /* width: 200px; */
+}
