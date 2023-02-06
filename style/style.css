@@ -15,6 +15,15 @@ header{
     border-radius: 1%;
     margin: 5px;
 }
+/* Main Component */
+
+main {
+    display: flex;
+    /* margin: 5px;
+    padding: 5px;
+    /* max-width: 80%; */
+    height: 100%; */
+}
 
 /* Card Container css */
 .cardContainer {
@@ -79,5 +88,88 @@ header{
 
 .card__image {
     height: 200px;
+    /* width: 200px; */
+}
+
+/* Cart */
+.cartContainer {
+    border: 1px solid green;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50%;
+    column-gap: 0.5%;
+    border: 1px solid red;
+    margin: 5px;
+    padding: 5px;
+    /* max-width: 80%; */
+    height: 100%;
+}
+
+
+.cartContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50%;
+    column-gap: 0.5%;
+    border: 1px solid red;
+    margin: 5px;
+    padding: 5px;
+    max-width: 80%;
+    height: 100%;
+    max-width: 20%;
+    text-align: center;
+    flex-direction: column;
+}
+
+.cart {
+    border: 1px solid green;
+    margin: 2px;
+    padding: 2px;
+    max-width: 200px;
+    /* height: 200px; */
+    /* align-items: center; */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cart__title {
+    margin: 1px;
+    border: 1px solid green;
+    font-size: 1.1rem;
+}
+.cart__description{
+    max-width: 295px;
+    border: 1px solid green;
+    font-size: 0.9rem;
+    height: 80px;
+}
+.cart__price {
+    border: 1px solid green;
+    font-size: 1.3rem;
+}
+
+.cart__buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid green;
+    font-size: 1.3rem;
+    padding: 4px;
+}
+
+#incrementButton{
+    width: 40px;
+    font-size: 1.5rem;
+}
+
+#decrementButton{
+    width: 40px;
+    font-size: 1.5rem;
+}
+
+.cart__image {
+    height: 150px;
     /* width: 200px; */
 }
