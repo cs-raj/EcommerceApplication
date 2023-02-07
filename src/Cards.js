@@ -1,11 +1,54 @@
+import CartCards from "./CartCards.js";
+import Cart from "./Cart.js";
 export default class Cards {
+    static addedObjectsArray = [];
+    static total = 0; // Could have used this object in the cart itself.
     constructor (dataObject) {
+
         this.count = 0;
         this.dataObject = dataObject;
+        this.cartCards = new CartCards();
+        this.cart = new Cart();
     }
 
+    /*
+        * On increment check whether the product is in addedObjectArray or not
+        * if not set the products count and price 
+        * Added it to addedObject Array
+        * if Present Updates it price and count
+        * Remove all the elements from the array and then refill the array
+        * -- Need to find how to select the element specific to that as have used ID to identify the element
+        * -- and products in list and cart have same IDs.
+    */
     incrementCounter(){
         this.count = this.count + 1;
+        const element = Cards.addedObjectsArray.find((ele)=>{if(ele.id===this.dataObject.id){return ele;}});
+        const cartQuery = document.querySelector('.cartContainer');
+        const cartContent = cartQuery.childNodes;
+
+        // Find how to remove all the cards form the cart itself without removing the total
+        if(element===undefined){
+            console.log("Undefined");
+            this.dataObject.count = this.count;
+            this.dataObject.countPrice = this.count * this.dataObject.price;
+            Cards.total += this.dataObject.price;
+            Cards.addedObjectsArray.push(this.dataObject);
+            cartQuery.innerHTML = "";
+
+                Cards.addedObjectsArray.forEach((ele)=>{
+                    console.log(ele);
+                    cartQuery.appendChild(this.cartCards.render(ele));
+                }); 
+        } else {
+            this.dataObject.count = this.count;
+            this.dataObject.countPrice = this.count * this.dataObject.price;
+            Cards.total += this.dataObject.price;
+            cartQuery.innerHTML = "";
+            Cards.addedObjectsArray.forEach((ele)=>{
+                cartQuery.appendChild(this.cartCards.render(ele));
+            });
+        }
+        console.log(cartQuery.querySelectorAll('.cart'));
         this.updateCounter();
     }
     decrementCounter(){
@@ -13,6 +56,34 @@ export default class Cards {
             this.updateCounter();
         } else {
             this.count = this.count - 1;
+            const element = Cards.addedObjectsArray.find((ele)=>{if(ele.id===this.dataObject.id){return ele;}});
+            const cartQuery = document.querySelector('.cartContainer');
+            const cartContent = cartQuery.childNodes;
+            if (element.count===1) {
+                // Total remove karna hai so woh yaha se extract karo
+                Cards.total -= element.price;
+                Cards.addedObjectsArray.splice(Cards.addedObjectsArray.indexOf(element),1); //removed element from the array
+                const n1 = document.querySelector('.cartContainer');
+                n1.innerHTML = "";
+                
+                // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+
+                Cards.addedObjectsArray.forEach((ele)=>{
+                    n1.appendChild(this.cartCards.render(ele));
+                });
+            } else {
+                element.count = this.count;
+                element.countPrice = this.count * element.price;
+                Cards.total -= element.price;
+                const n1 = document.querySelector('.cartContainer');
+                n1.innerHTML = "";
+               
+                // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+                Cards.addedObjectsArray.forEach((ele)=>{
+                    n1.appendChild(this.cartCards.render(ele));
+                });
+            }
+            console.log(Cards.total);
             this.updateCounter();
         }
 

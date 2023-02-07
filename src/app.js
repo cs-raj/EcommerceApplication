@@ -4,37 +4,55 @@ import Cards from "./Cards.js";
 import data from '../data/data.json' assert { type: 'json' };
 import Cart from "./Cart.js";
 import CartCards from "./CartCards.js";
-const root = document.getElementById('root');
-const mainComponent = document.createElement('main');
 
-//Create instances of classes
-const header = new Header();
-const cardContainer = new CardContainer();
-const cart = new Cart();
+class AppComponent {
+    constructor () {
+        this.header = new Header();
+        this.cardContainer = new CardContainer();
+        this.cart = new Cart();
+        this.root = document.getElementById('root');
+        this.mainComponent = document.createElement('main');
+    }
+    render () {
+        const cardContainerRender = this.cardContainer.render();
+        const cartRender = this.cart.render();
 
-
-root.append(header.render());
-root.appendChild(mainComponent);
-
-const cc = cardContainer.render();
-const c = cart.render();
-mainComponent.append(cc);
-mainComponent.append(c);
-console.log(data);
-
-data.products.forEach((element)=>{
-    const card = new Cards(element);
-    cc.appendChild(card.render());
-});
+        this.root.append(this.header.render());
+        this.root.appendChild(this.mainComponent);
+        this.mainComponent.append(cardContainerRender);
+        this.mainComponent.append(cartRender);
 
 
-data.products.forEach((element)=>{
-    const cartCards = new CartCards(element);
-    c.appendChild(cartCards.render());
-});
+        data.products.forEach((element)=>{
+        const card = new Cards(element);
+        cardContainerRender.appendChild(card.render());
+        });
+    }
+    mount () {}
+}
 
-// for(let i =0;i<5;i++){
-//     const card = new Cards();
-//     cc.appendChild(card.render());
-// }
-// root.appendChild(card.render());
+const ac = new AppComponent();
+ac.render();
+
+
+
+
+
+
+
+// //Create instances of classes
+// const header = new Header();
+// const cardContainer = new CardContainer();
+// const cart = new Cart();
+
+
+
+
+// console.log(data);
+
+
+
+// data.products.forEach((element)=>{
+//     const cartCards = new CartCards(element);
+//     c.appendChild(cartCards.render());
+// });

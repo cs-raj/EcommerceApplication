@@ -1,8 +1,27 @@
 export default class CartCards {
-    constructor (dataObject) {
-        this.dataObject = dataObject;
+    constructor () {
+        this.price = 0;
+        this.count = 0;
+        // this.dataObject = dataObject;
     }
-    render () {
+
+    // incrementCounter(dataObject){
+    //     this.count = this.count + 1;
+    //     this.updateCounter(dataObject);
+    // }
+    // decrementCounter(dataObject){
+    //     if(this.count===0){
+    //         this.updateCounter(dataObject);
+    //     } else {
+    //         this.count = this.count - 1;
+    //         this.updateCounter(dataObject);
+    //     }
+    // }
+    // updateCounter(dataObject){
+    //     // console.log( document.querySelector('.card__buttonContainerQuantity'));
+    //     document.getElementById(dataObject.id).innerText = `${this.count}`;
+    // }
+    render (dataObject) {
         const cart = document.createElement('div');
         const cartTitle = document.createElement('div');
         const cartImage = document.createElement('img');
@@ -22,26 +41,27 @@ export default class CartCards {
         cartButtonContainerQuantity.classList.add('cart__buttonContainerQuantity');
         cartButtonContainerAdd.id = "incrementButton";
         cartButtonContainerRemove.id = "decrementButton";
-        cartButtonContainerQuantity.id = this.dataObject.id;
+        cartButtonContainerQuantity.id = dataObject.id;
         cartButtonContainerAdd.innerText = "+";
         cartButtonContainerRemove.innerText = "-";
-        cartButtonContainerQuantity.innerText = `${this.count}`;
-        // cartButtonContainerAdd.onclick = this.incrementCounter.bind(this);
-        // cartButtonContainerRemove.onclick = this.decrementCounter.bind(this);
+        cartButtonContainerQuantity.innerText = `${dataObject.countPrice}`;
+        // cartButtonContainerAdd.onclick = this.incrementCounter.bind(this,dataObject);
+        // cartButtonContainerRemove.onclick = this.decrementCounter.bind(this,dataObject);
 
-        cartTitle.innerText = this.dataObject.title;
-        cartImage.src = this.dataObject.images[0];
-        cartDescription.innerText = this.dataObject.description;
-        cartPrice.innerText = (this.dataObject.price) + " INR";
+        cartTitle.innerText = dataObject.title;
+        cartImage.src = dataObject.images[0];
+        cartDescription.innerText = dataObject.description;
+        cartPrice.innerText = (dataObject.count);
         //Adding the element to the boxes
         cart.appendChild(cartTitle);
         cart.appendChild(cartImage);
         cart.appendChild(cartDescription);
         cart.appendChild(cartPrice);
-        cart.appendChild(cartButtonContainer);
-        cartButtonContainer.appendChild(cartButtonContainerAdd);
-        cartButtonContainer.appendChild(cartButtonContainerQuantity);
-        cartButtonContainer.appendChild(cartButtonContainerRemove);
+        cart.appendChild(cartButtonContainerQuantity);
+        // cart.appendChild(cartButtonContainer);
+        // cartButtonContainer.appendChild(cartButtonContainerAdd);
+        // cartButtonContainer.appendChild();
+        // cartButtonContainer.appendChild(cartButtonContainerRemove);
 
         return cart;
     }
