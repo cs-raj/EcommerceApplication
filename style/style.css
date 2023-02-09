@@ -14,6 +14,7 @@ header{
     color: purple;
     border-radius: 1%;
     margin: 5px;
+    width: 100%;
 }
 /* Main Component */
 
@@ -22,29 +23,29 @@ main {
     /* margin: 5px;
     padding: 5px;
     /* max-width: 80%; */
-    height: 100%; */
+    height: 100%;
 }
 
 /* Card Container css */
 .cardContainer {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     row-gap: 50%;
     column-gap: 0.5%;
     border: 1px solid red;
     margin: 5px;
-    padding: 5px;
-    max-width: 80%;
+    padding: 2px;
+    max-width: 1000px;
     height: 100%;
+    float: left;
 }
 
 .card {
     border: 1px solid green;
     margin: 2px;
     padding: 2px;
-    max-width: 300px;
-    /* height: 200px; */
-    /* align-items: center; */
+    width: 240px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -60,7 +61,7 @@ main {
     max-width: 295px;
     border: 1px solid green;
     font-size: 1rem;
-    height: 80px;
+    height: 100px;
 }
 .card__price {
     border: 1px solid green;
@@ -93,7 +94,6 @@ main {
 
 /* Cart */
 .cartContainer {
-    border: 1px solid green;
     display: flex;
     flex-wrap: wrap;
     row-gap: 50%;
@@ -101,33 +101,19 @@ main {
     border: 1px solid red;
     margin: 5px;
     padding: 5px;
-    /* max-width: 80%; */
     height: 100%;
-}
-
-
-.cartContainer {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 50%;
-    column-gap: 0.5%;
-    border: 1px solid red;
-    margin: 5px;
-    padding: 5px;
-    max-width: 80%;
-    height: 100%;
-    max-width: 20%;
+    width: 100%;
     text-align: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .cart {
     border: 1px solid green;
     margin: 2px;
     padding: 2px;
-    max-width: 200px;
-    /* height: 200px; */
-    /* align-items: center; */
+    max-width: 300px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -140,7 +126,7 @@ main {
     font-size: 1.1rem;
 }
 .cart__description{
-    max-width: 295px;
+    max-width: 100%;
     border: 1px solid green;
     font-size: 0.9rem;
     height: 80px;
@@ -172,4 +158,41 @@ main {
 .cart__image {
     height: 150px;
     /* width: 200px; */
+}
+
+#cart__total {
+    max-width: 100%;
+}
+
+
+@media screen and (min-width:1057px) and (max-width:1305px) {
+    .cart {
+        max-width: 200px;
+    }
+    .cart__image {
+        height: 100px;
+    }
+}
+
+@media screen and (min-width:300px) and (max-width:1056px) {
+    .cardContainer {
+        min-width: 150px;
+        max-width: 800px;
+        /* width: 150px; */
+      }
+      .card{
+        width: 150px;
+      }
+      .cartContainer {
+        min-width: 160px;
+      }
+    .cart {
+        max-width: 150px;
+    }
+    .cart__image {
+        height: 100px;
+    }
+    .cart__description{
+        display: none;
+    }
 }
