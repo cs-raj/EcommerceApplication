@@ -24,7 +24,7 @@ export default class Cards {
         this.count = this.count + 1;
         const element = Cards.addedObjectsArray.find((ele)=>{if(ele.id===this.dataObject.id){return ele;}});
         const cartQuery = document.querySelector('.cartContainer');
-        const cartContent = cartQuery.childNodes;
+        const cartContent = cartQuery.querySelectorAll('.cart');
 
         // Find how to remove all the cards form the cart itself without removing the total
         if(element===undefined){
@@ -33,7 +33,11 @@ export default class Cards {
             this.dataObject.countPrice = this.count * this.dataObject.price;
             Cards.total += this.dataObject.price;
             Cards.addedObjectsArray.push(this.dataObject);
-            cartQuery.innerHTML = "";
+            document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+
+            for(let i =0;i<cartContent.length;i++){
+                cartQuery.removeChild(cartContent[i]);
+            }
 
                 Cards.addedObjectsArray.forEach((ele)=>{
                     console.log(ele);
@@ -43,12 +47,15 @@ export default class Cards {
             this.dataObject.count = this.count;
             this.dataObject.countPrice = this.count * this.dataObject.price;
             Cards.total += this.dataObject.price;
-            cartQuery.innerHTML = "";
+            document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+            for(let i =0;i<cartContent.length;i++){
+                cartQuery.removeChild(cartContent[i]);
+            }
             Cards.addedObjectsArray.forEach((ele)=>{
                 cartQuery.appendChild(this.cartCards.render(ele));
             });
         }
-        console.log(cartQuery.querySelectorAll('.cart'));
+        // console.log(cartQuery.querySelectorAll('.cart'));
         this.updateCounter();
     }
     decrementCounter(){
@@ -58,30 +65,50 @@ export default class Cards {
             this.count = this.count - 1;
             const element = Cards.addedObjectsArray.find((ele)=>{if(ele.id===this.dataObject.id){return ele;}});
             const cartQuery = document.querySelector('.cartContainer');
-            const cartContent = cartQuery.childNodes;
+            const cartContent = cartQuery.querySelectorAll('.cart');
             if (element.count===1) {
                 // Total remove karna hai so woh yaha se extract karo
                 Cards.total -= element.price;
                 Cards.addedObjectsArray.splice(Cards.addedObjectsArray.indexOf(element),1); //removed element from the array
-                const n1 = document.querySelector('.cartContainer');
-                n1.innerHTML = "";
-                
-                // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+                document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+
+                for(let i =0;i<cartContent.length;i++){
+                    cartQuery.removeChild(cartContent[i]);
+                }
 
                 Cards.addedObjectsArray.forEach((ele)=>{
-                    n1.appendChild(this.cartCards.render(ele));
-                });
+                    console.log(ele);
+                    cartQuery.appendChild(this.cartCards.render(ele));
+                }); 
+                // const n1 = document.querySelector('.cartContainer');
+                // n1.innerHTML = "";
+                
+                // // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+
+                // Cards.addedObjectsArray.forEach((ele)=>{
+                //     n1.appendChild(this.cartCards.render(ele));
+                // });
             } else {
                 element.count = this.count;
                 element.countPrice = this.count * element.price;
                 Cards.total -= element.price;
-                const n1 = document.querySelector('.cartContainer');
-                n1.innerHTML = "";
-               
-                // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+                document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+
+            for(let i =0;i<cartContent.length;i++){
+                cartQuery.removeChild(cartContent[i]);
+            }
+
                 Cards.addedObjectsArray.forEach((ele)=>{
-                    n1.appendChild(this.cartCards.render(ele));
-                });
+                    console.log(ele);
+                    cartQuery.appendChild(this.cartCards.render(ele));
+                }); 
+                // const n1 = document.querySelector('.cartContainer');
+                // n1.innerHTML = "";
+               
+                // // document.getElementById('cart__total').innerText = `Total : ${Cards.total} INR`;
+                // Cards.addedObjectsArray.forEach((ele)=>{
+                //     n1.appendChild(this.cartCards.render(ele));
+                // });
             }
             console.log(Cards.total);
             this.updateCounter();
