@@ -26,5 +26,10 @@
     * style.css
 * index.html
 
-#### app.js -- This is the main file which house header, cardContainer, Cart. Cart will contain CartCards instances populated with data of the product selected by the user. CardContainer will house Cards which will contain data for all the products present. The Data with which it is populated is taken from web source is mentioned at top.
+#### app.js -- This is the main file which house header, cardContainer, Cart. 
+Cart will contain CartCards instances populated with data of the product selected by the user. 
+
+CardContainer will house Cards which will contain data for all the products present. 
+
+The Data with which it is populated is taken from web source is mentioned at top.
 
